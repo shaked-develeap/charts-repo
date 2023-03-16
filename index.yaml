@@ -1,0 +1,20 @@
+apiVersion: v1
+entries:
+  generic:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2023-03-16T16:20:13.957874+02:00"
+    description: A Helm generic chart for Kubernetes
+    digest: c0580ecd1dd5bad80f557b1bc526a12a6f30941ee7a81224e4365ad8b2bb1094
+    icon: https://cncf-branding.netlify.app/img/projects/helm/icon/color/helm-icon-color.png
+    maintainers:
+    - name: shmuel-felman
+      url: https://github.com/shmuel-develeap
+    name: generic
+    sources:
+    - https://github.com/shmuel-develeap/charts-repo
+    type: application
+    urls:
+    - https://github.com/shmuel-develeap/charts-repo.git/charts/generic-0.1.0.tgz
+    version: 0.1.0
+generated: "2023-03-16T16:20:13.953665+02:00"
