@@ -38,7 +38,7 @@ helm install my-release shmuel-develeap/generic -var-file=./my-app-config.yaml
 
 | Name                               | Description                                                                        | Value                                                  |
 | ---------------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------ |
-| `podAnnotations`                   | Chart Pod annotations                                                              | `{}`                                                   |
+| `podAnnotations`                   | Pod annotations                                                                    | `{}`                                                   |
 | `replicaCount`                     | Number of replicas, ignored in DaemonSet                                           | `2`                                                    |
 | `image.repository`                 | Image repository                                                                   | `123456789012.dkr.ecr.eu-west-2.amazonaws.com/example` |
 | `image.tag`                        | Chart image tag whose default is the chart appVersion                              | `latest`                                               |
@@ -67,6 +67,16 @@ helm install my-release shmuel-develeap/generic -var-file=./my-app-config.yaml
 | `autoscaling.targetCPUUtilizationPercentage`    | CPU usage percentage for scale-up triggering                            | `80`    |
 | `autoscaling.targetMemoryUtilizationPercentage` | Memory usage percentage for scale-up triggering                         | `80`    |
 
+### Service parameters
+
+| Name                   | Description                                            | Value       |
+| ---------------------- | ------------------------------------------------------ | ----------- |
+| `service.enabled`      | Create service for expose the application as a service | `false`     |
+| `service.nameOverride` | service name                                           | `""`        |
+| `service.port`         | Kubernetes Service port                                | `80`        |
+| `service.type`         | Kubernetes Service type                                | `ClusterIP` |
+| `service.portName`     | service port name                                      | `""`        |
+
 ### Service Account parameters
 
 | Name                         | Description                                                                                                            | Value   |
@@ -74,16 +84,6 @@ helm install my-release shmuel-develeap/generic -var-file=./my-app-config.yaml
 | `serviceAccount.create`      | Specifies whether a service account should be created                                                                  | `false` |
 | `serviceAccount.annotations` | Annotations to add to the service account                                                                              | `{}`    |
 | `serviceAccount.name`        | The name of the service account to use. If not set and create is true, a name is generated using the fullname template | `""`    |
-
-### Service parameters
-
-| Name                   | Description                                            | Value       |
-| ---------------------- | ------------------------------------------------------ | ----------- |
-| `service.enabled`      | Create service for expose the application as a service | `true`      |
-| `service.nameOverride` | service name                                           | `""`        |
-| `service.port`         | Kubernetes Service port                                | `80`        |
-| `service.type`         | Kubernetes Service type                                | `ClusterIP` |
-| `service.portName`     | service port name                                      | `""`        |
 
 ### Ingress parameters
 

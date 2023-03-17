@@ -12,7 +12,7 @@ fullnameOverride: ""
 
 ## @section Application (Deployment/StatefulSet/DaemonSet) parameters
 ##
-## @param podAnnotations Chart Pod annotations
+## @param podAnnotations Pod annotations
 ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
 ##
 podAnnotations: {}
@@ -175,24 +175,12 @@ autoscaling:
   targetMemoryUtilizationPercentage: 80
 
 
-## @section Service Account parameters
-##
-## @param serviceAccount.create Specifies whether a service account should be created
-## @param serviceAccount.annotations Annotations to add to the service account
-## @param serviceAccount.name The name of the service account to use. If not set and create is true, a name is generated using the fullname template
-serviceAccount:
-  create: false
-  annotations: {}
-  name: ""
-##
-
-
 ## @section Service parameters
 ##
 service:
   ## @param service.enabled Create service for expose the application as a service
   ##
-  enabled: true
+  enabled: false
   ## @param service.nameOverride service name
   ##
   nameOverride: ""
@@ -205,6 +193,19 @@ service:
   ## @param service.portName service port name
   ##
   portName: ""
+
+
+## @section Service Account parameters
+##
+## @param serviceAccount.create Specifies whether a service account should be created
+## @param serviceAccount.annotations Annotations to add to the service account
+## @param serviceAccount.name The name of the service account to use. If not set and create is true, a name is generated using the fullname template
+serviceAccount:
+  create: false
+  annotations: {}
+  name: ""
+##
+
 
 ## @section Ingress parameters
 ##
