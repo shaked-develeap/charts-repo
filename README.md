@@ -13,7 +13,7 @@ To install the chart, follow these steps:
 
 1. Add the chart repository to Helm: 
 ```console
-helm repo add generic-chart https://shmuel-develeap.github.io/charts-repo/
+helm repo add shmuel-develeap https://shmuel-develeap.github.io/charts-repo/
 ```
 2. Update your local Helm chart repository: 
 ```console
@@ -21,7 +21,7 @@ helm repo update
 ```
 3. Install the chart: 
 ```console
-helm install my-release generic -var-file=./my-app-config.yaml
+helm install my-release shmuel-develeap/generic -var-file=./my-app-config.yaml
 ```
 
 ## Parameters
