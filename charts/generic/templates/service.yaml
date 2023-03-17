@@ -1,0 +1,25 @@
+{{- if .Values.service.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{- if .Values.service.nameOverride }} {{.Values.service.nameOverride}} {{- else }} {{ include "generic.fullname" .}} {{- end }}
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    {{- include "generic.labels" . | nindent 4 }}
+spec:
+  {{- if eq .Values.appKind "StatefulSet" }}
+  type: ClusterIP
+  {{- else }}
+  type: {{ .Values.service.type | default "ClusterIP" }}
+  {{- end }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.targetPort | default .Values.service.port }}
+      protocol: {{ .Values.service.protocol | default "TCP" }}
+  {{- if eq .Values.appKind "StatefulSet" }}
+  clusterIP: None
+  {{- end }}
+  selector:
+    {{- include "generic.selectorLabels" . | nindent 4 }}
+{{- end }}
+

@@ -1,0 +1,269 @@
+## @section Chart parameters
+##
+## @param appKind Application kind: Deployment, StatefulSet or DeamonSet
+##
+appKind: Deployment
+## @param nameOverride String to partially override the release name
+##
+nameOverride: ""
+## @param fullnameOverride String to fully override the fullname in templates
+##
+fullnameOverride: ""
+
+## @section Application (Deployment/StatefulSet/DaemonSet) parameters
+##
+## @param podAnnotations Chart Pod annotations
+## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+##
+podAnnotations: {}
+## @param replicaCount Number of replicas, ignored in DaemonSet
+##
+replicaCount: 2
+##
+## Chart image parameters
+image:
+  ## @param image.repository Image repository
+  ##
+  repository: 123456789012.dkr.ecr.eu-west-2.amazonaws.com/example
+  ## @param image.tag Chart image tag whose default is the chart appVersion
+  ##
+  tag: "latest"
+  ## Specify a imagePullPolicy
+  ## ref: https://kubernetes.io/docs/user-guide/images/#pre-pulling-images
+  ##
+  ## @param image.pullPolicy Chart image pull policy
+  pullPolicy: IfNotPresent
+## @param imagePullSecrets Global Docker registry secret names as an array
+##
+## Optionally specify an array of imagePullSecrets
+## Secrets must be manually created in the namespace
+## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+##
+imagePullSecrets: []
+## - myRegistryKeySecretName
+##
+## @extra ports Exposed container ports as an array
+## @skip ports
+##
+ports:
+- name: http
+  containerPort: 80
+  protocol: TCP
+## @param spreadConstraintsByNodes.enabled Enable spreading pods on a nodes by max 1 skew
+##
+spreadConstraintsByNodes:
+  enabled: true
+##
+## @param environmentVariables Map of key-value pairs that insert in config map
+##
+environmentVariables: {}
+  # EXAMPLE_ENV_1: example-string
+  # EXAMPLE_ENV_2: "42" # example of int
+##
+## @param additionalEnvFrom List of secrets and/or config maps for mapping the values as environment variables
+##
+## Optionally specify an array of secrets/configMaps.
+## the key in the last element overrides all
+##
+additionalEnvFrom: []
+# - secretRef:
+#   name: example-secret
+# - configMapKeyRef:
+#   name: example-configMap
+##
+## @param additionalEnvValues list of key-value/valueFrom pairs to use as environment variables
+##
+## Optionally specify an array of key-value/valueFrom pairs.
+## the array will be mapped in env section in the deployment yaml
+additionalEnvValues: []
+# - name: ExampleSecretEnv
+#   valueFrom:
+#     secretKeyRef:
+#       name: example-secret
+#       key: example-password
+# - name: ExampleConfigMapEnv
+#   valueFrom:
+#     configMapKeyRef:
+#       name: example-configMap
+#       key: example-map-value
+# - name: ExampleSpecialEnv
+#   value: example-value
+##
+## Chart pods' Security Context.
+## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
+## @param podSecurityContext pod(s)' Security Context
+##
+podSecurityContext: {}
+  # fsGroup: 2000
+## Chart containers' Security Context (main and metrics container).
+## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container
+## @param containerSecurityContext pod(s)' Security Context
+##
+containerSecurityContext: {}
+  # fsGroup: 2000
+## @param volumes Volumes as an array
+##
+## Optionally specify an array of volumes.
+##
+volumes: []
+# - name: example
+#   emptyDir: {}
+##
+## @param volumeMounts Volume Mounts as an array
+##
+## Optionally specify an array of volume mounts.
+##
+volumeMounts: []
+# - name: example-volume
+#   mountPath: /tmp/example
+##
+## @param initContainers Init containers as an array
+##
+## Optionally specify an array of init containers
+##
+initContainers: []
+# - name: init
+#   image: busybox
+#   command: 
+#   - /bin/sh
+#   - -c
+#   - sleep
+#   - 10;
+#   - true
+#   volumeMounts:
+#   - name: example-volume
+#     mountPath: /tmp/example
+##
+
+## ref: https://kubernetes.io/docs/user-guide/compute-resources/
+## We usually recommend not to specify default resources and to leave this as a conscious
+## choice for the user. This also increases chances charts run on environments with little
+## resources, such as Minikube.
+##
+resources:
+  ## @param resources.limits Limit definition as max resources that pod will use
+  ##
+  limits: {}
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  ## @param resources.requests Request definition as resources that pod need to run 
+  ##
+  requests: {}
+  #   cpu: 100m
+  #   memory: 128Mi
+
+
+## @section Horizontal Pod Autoscale parameters
+##
+## ref: https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
+autoscaling:
+  ## @param autoscaling.enabled Enabling auto scale for the deployment based on resources usage monitor
+  ##
+  enabled: false
+  ## @param autoscaling.minReplicas Minimum replicas to deploy
+  ##
+  minReplicas: 1
+  ## @param autoscaling.maxReplicas Maximum replicas to deploy
+  ##
+  maxReplicas: 10
+  ## @param autoscaling.targetCPUUtilizationPercentage CPU usage percentage for scale-up triggering
+  ##
+  targetCPUUtilizationPercentage: 80
+  ## @param autoscaling.targetMemoryUtilizationPercentage Memory usage percentage for scale-up triggering
+  ##
+  targetMemoryUtilizationPercentage: 80
+
+
+## @section Service Account parameters
+##
+## @param serviceAccount.create Specifies whether a service account should be created
+## @param serviceAccount.annotations Annotations to add to the service account
+## @param serviceAccount.name The name of the service account to use. If not set and create is true, a name is generated using the fullname template
+serviceAccount:
+  create: false
+  annotations: {}
+  name: ""
+##
+
+
+## @section Service parameters
+##
+service:
+  ## @param service.enabled Create service for expose the application as a service
+  ##
+  enabled: true
+  ## @param service.nameOverride service name
+  ##
+  nameOverride: ""
+  ## @param service.port Kubernetes Service port
+  ##
+  port: 80
+  ## @param service.type Kubernetes Service type
+  ##
+  type: ClusterIP
+  ## @param service.portName service port name
+  ##
+  portName: ""
+
+## @section Ingress parameters
+##
+ingress:
+  ## @param ingress.enabled Create ingress for expose service through load balancer controler service
+  ##
+  enabled: false
+  ## @param ingress.annotations Ingress anonotations
+  ##
+  annotations: {}
+    # kubernetes.io/ingress.class: alb
+    # alb.ingress.kubernetes.io/target-type: ip
+    # alb.ingress.kubernetes.io/scheme: internet-facing
+    # alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
+    # alb.ingress.kubernetes.io/ssl-redirect: '443'
+    # alb.ingress.kubernetes.io/healthcheck-path: /favicon.ico
+    # alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:eu-west-2:281061728100:certificate/3c335f49-131d-47b5-9344-fc965a9e3f69
+    # alb.ingress.kubernetes.io/inbound-cidrs: >
+    #   103.21.244.0/22,
+    #   103.22.200.0/22,
+    #   103.31.4.0/22,
+    #   104.16.0.0/13,
+    #   104.24.0.0/14,
+    #   108.162.192.0/18,
+    #   131.0.72.0/22,
+    #   141.101.64.0/18,
+    #   162.158.0.0/15,
+    #   172.64.0.0/13,
+    #   173.245.48.0/20,
+    #   188.114.96.0/20,
+    #   190.93.240.0/20,
+    #   197.234.240.0/22,
+    #   198.41.128.0/17,
+    #   0.0.0.0/0
+  ## @param ingress.hosts Ingress host and path parameters
+  ##
+  hosts: []
+    # - host: www.example.org
+    #   paths:
+    #     - path: /
+    #       pathType: Prefix
+  ## @param ingress.tls Ingress tls paramters for https protocol ingress
+  tls: []
+  #  - secretName: example-nginx-tls
+  #    hosts:
+  #      - www.example.org
+##
+## @param nodeSelector Chart Node labels for pod assignment
+## ref: https://kubernetes.io/docs/user-guide/node-selection/
+##
+nodeSelector: {}
+##
+## @param tolerations Chart Tolerations for pod assignment
+## ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+##
+tolerations: []
+##
+## @param affinity Chart Affinity for pod assignment
+## ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
+## Note: podAffinityPreset, podAntiAffinityPreset, and nodeAffinityPreset will be ignored when it's set
+##
+affinity: {}

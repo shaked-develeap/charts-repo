@@ -1,0 +1,9 @@
+{{- if .Values.environmentVariables }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "{{ include "generic.fullname" . }}-config-map"
+  namespace: {{ .Release.Namespace | quote }}
+data:
+  {{- toYaml .Values.environmentVariables | nindent 2 }}
+{{- end }}

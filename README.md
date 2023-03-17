@@ -55,8 +55,8 @@ To install the chart, follow these steps:
 | `autoscaling.enabled`                           | Enabling auto scale for the deployment based on resources usage monitor | `false` |
 | `autoscaling.minReplicas`                       | Minimum replicas to deploy                                              | `1`     |
 | `autoscaling.maxReplicas`                       | Maximum replicas to deploy                                              | `10`    |
-| `autoscaling.targetCPUUtilizationPercentage`    | CPU usage percentage for scale-up triggering                             | `80`    |
-| `autoscaling.targetMemoryUtilizationPercentage` | Memory usage percentage for scale-up triggering                          | `80`    |
+| `autoscaling.targetCPUUtilizationPercentage`    | CPU usage percentage for scale-up triggering                            | `80`    |
+| `autoscaling.targetMemoryUtilizationPercentage` | Memory usage percentage for scale-up triggering                         | `80`    |
 
 ### Service Account parameters
 
@@ -68,13 +68,13 @@ To install the chart, follow these steps:
 
 ### Service parameters
 
-| Name                   | Description                                       | Value       |
-| ---------------------- | ------------------------------------------------- | ----------- |
-| `service.enabled`      | Create service for expose deployment as a service | `true`      |
-| `service.nameOverride` | service name                                      | `nnn`       |
-| `service.port`         | Kubernetes Service port                           | `80`        |
-| `service.type`         | Kubernetes Service type                           | `ClusterIP` |
-| `service.portName`     | service port name                                 | `""`        |
+| Name                   | Description                                            | Value       |
+| ---------------------- | ------------------------------------------------------ | ----------- |
+| `service.enabled`      | Create service for expose the application as a service | `true`      |
+| `service.nameOverride` | service name                                           | `""`        |
+| `service.port`         | Kubernetes Service port                                | `80`        |
+| `service.type`         | Kubernetes Service type                                | `ClusterIP` |
+| `service.portName`     | service port name                                      | `""`        |
 
 ### Ingress parameters
 
