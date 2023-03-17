@@ -15,6 +15,6 @@ entries:
     - https://github.com/shmuel-develeap/charts-repo
     type: application
     urls:
-    - https://github.com/shmuel-develeap/charts-repo.git/charts/generic-0.1.0.tgz
+    - https://shmuel-develeap.github.io/charts-repo/charts/generic-0.1.0.tgz
     version: 0.1.0
 generated: "2023-03-16T16:20:13.953665+02:00"
