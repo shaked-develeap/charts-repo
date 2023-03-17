@@ -11,9 +11,18 @@ Before installing this Helm chart, you will need the following:
 
 To install the chart, follow these steps:
 
-1. Add the chart repository to Helm: `helm repo add generic-chart https://shmuel-develeap.github.io/charts-repo/`
-2. Update your local Helm chart repository: `helm repo update`
-3. Install the chart: `helm install my-release generic -var-file=./my-app-config.yaml`
+1. Add the chart repository to Helm: 
+```console
+helm repo add generic-chart https://shmuel-develeap.github.io/charts-repo/
+```
+2. Update your local Helm chart repository: 
+```console
+helm repo update
+```
+3. Install the chart: 
+```console
+helm install my-release generic -var-file=./my-app-config.yaml
+```
 
 ## Parameters
 
@@ -92,8 +101,14 @@ To install the chart, follow these steps:
 
 To upgrade the chart, follow these steps:
 
-1. Update your local Helm chart repository: `helm repo update`
-2. Upgrade the chart: `helm upgrade my-release generic`
+1. Update your local Helm chart repository: 
+```console
+helm repo update
+```
+2. Upgrade the chart: 
+```console
+helm upgrade my-release generic
+```
 
 ## Troubleshooting
 
@@ -102,4 +117,4 @@ If you encounter any issues when deploying or using this Helm chart, please refe
 - Official Kubernetes documentation: https://kubernetes.io/docs/
 - Helm documentation: https://helm.sh/docs/
 - Support forums for the application you are deploying
-```
+
