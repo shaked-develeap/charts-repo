@@ -17,7 +17,7 @@ To install the chart, follow these steps:
 
 ## Parameters
 
-### Chart (Deployment/StatefulSet/DaemonSet) parameters
+### Chart parameters
 
 | Name               | Description                                            | Value        |
 | ------------------ | ------------------------------------------------------ | ------------ |
@@ -55,8 +55,8 @@ To install the chart, follow these steps:
 | `autoscaling.enabled`                           | Enabling auto scale for the deployment based on resources usage monitor | `false` |
 | `autoscaling.minReplicas`                       | Minimum replicas to deploy                                              | `1`     |
 | `autoscaling.maxReplicas`                       | Maximum replicas to deploy                                              | `10`    |
-| `autoscaling.targetCPUUtilizationPercentage`    | CPU usage percentage for scale-up triggring                             | `80`    |
-| `autoscaling.targetMemoryUtilizationPercentage` | Memory usage percentage for scale-up triggring                          | `80`    |
+| `autoscaling.targetCPUUtilizationPercentage`    | CPU usage percentage for scale-up triggering                             | `80`    |
+| `autoscaling.targetMemoryUtilizationPercentage` | Memory usage percentage for scale-up triggering                          | `80`    |
 
 ### Service Account parameters
 
@@ -93,7 +93,7 @@ To install the chart, follow these steps:
 To upgrade the chart, follow these steps:
 
 1. Update your local Helm chart repository: `helm repo update`
-2. Upgrade the chart: `helm upgrade my-release generic-chart`
+2. Upgrade the chart: `helm upgrade my-release generic`
 
 ## Troubleshooting
 
