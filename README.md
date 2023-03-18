@@ -50,7 +50,7 @@ helm install my-release shmuel-develeap/generic -var-file=./my-app-config.yaml
 | `additionalEnvFrom`                | List of secrets and/or config maps for mapping the values as environment variables | `[]`                                                   |
 | `additionalEnvValues`              | list of key-value/valueFrom pairs to use as environment variables                  | `[]`                                                   |
 | `podSecurityContext`               | pod(s)' Security Context                                                           | `{}`                                                   |
-| `containerSecurityContext`         | pod(s)' Security Context                                                           | `{}`                                                   |
+| `containerSecurityContext`         | container(s)' Security Context                                                     | `{}`                                                   |
 | `volumes`                          | Volumes as an array                                                                | `[]`                                                   |
 | `volumeMounts`                     | Volume Mounts as an array                                                          | `[]`                                                   |
 | `initContainers`                   | Init containers as an array                                                        | `[]`                                                   |
